@@ -8,18 +8,23 @@ services:
     dockerContext: .
     plan: free
     envVars:
-      - key: DATABASE_URL
-        value: postgresql://postgres:postgres@formbricks-db:5432/postgres
-        build: true
-      - key: NEXTAUTH_SECRET
-        value: 9e96d2f0f4ab9d4cca3623a9997992af8f0c86e7858cdbc2797f7809cfd84470
-        build: true
-      - key: NEXTAUTH_URL
-        value: https://formbricks-mobilizr.onrender.com
-        build: true
-      - key: ENCRYPTION_KEY
-        value: 70752bc3c99afffed475c3258b315c50e67646aebfe3d312af5abebcd8e2860d
-        build: true
+    - key: DATABASE_URL
+      value: postgresql://postgres:postgres@formbricks-db:5432/postgres
+      build: true
+      buildArg: true
+    - key: NEXTAUTH_SECRET
+      value: 9e96d2f0f4ab9d4cca3623a9997992af8f0c86e7858cdbc2797f7809cfd84470
+      build: true
+      buildArg: true
+    - key: NEXTAUTH_URL
+      value: https://formbricks-mobilizr.onrender.com
+      build: true
+      buildArg: true
+    - key: ENCRYPTION_KEY
+      value: 70752bc3c99afffed475c3258b315c50e67646aebfe3d312af5abebcd8e2860d
+      build: true
+      buildArg: true
+
 
 
   postgres:
