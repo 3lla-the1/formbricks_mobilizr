@@ -1,29 +1,20 @@
 FROM node:18
 
-# Accept build args
-ARG DATABASE_URL
-ARG ENCRYPTION_KEY
-ARG NEXTAUTH_SECRET
-ARG NEXTAUTH_URL
-
-# Export them as environment variables
-ENV DATABASE_URL=$DATABASE_URL
-ENV ENCRYPTION_KEY=$ENCRYPTION_KEY
-ENV NEXTAUTH_SECRET=$NEXTAUTH_SECRET
-ENV NEXTAUTH_URL=$NEXTAUTH_URL
-
 RUN npm install -g pnpm
 
 WORKDIR /app
 COPY . .
 
+# Install deps
 RUN pnpm install
 
-# 👇 Create dummy .env so Next.js doesn't freak out
+# 👇 Prevent Next.js from failing during build
 RUN touch /app/apps/web/.env
 
-# 👇 Build with all env vars available
+# Build everything
 RUN pnpm build
 
 EXPOSE 3000
+
+# At runtime, Render will inject the env vars automatically
 CMD ["pnpm", "start"]
