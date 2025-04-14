@@ -1,22 +1,24 @@
-# Dockerfile
 FROM node:18
 
-# Install pnpm
+# Accept build args
+ARG DATABASE_URL
+ARG ENCRYPTION_KEY
+ARG NEXTAUTH_SECRET
+ARG NEXTAUTH_URL
+
+# Export as env vars for Next.js build step
+ENV DATABASE_URL=$DATABASE_URL
+ENV ENCRYPTION_KEY=$ENCRYPTION_KEY
+ENV NEXTAUTH_SECRET=$NEXTAUTH_SECRET
+ENV NEXTAUTH_URL=$NEXTAUTH_URL
+
 RUN npm install -g pnpm
-
 WORKDIR /app
-
 COPY . .
-
-# Install all dependencies
 RUN pnpm install
 
-# Build only the web app
 WORKDIR /app/apps/web
 RUN pnpm build
 
-# Expose web server port
 EXPOSE 3000
-
-# Start the app
 CMD ["pnpm", "start"]
