@@ -6,18 +6,20 @@ ARG ENCRYPTION_KEY
 ARG NEXTAUTH_SECRET
 ARG NEXTAUTH_URL
 
-# Export as env vars for Next.js build step
+# Export as env vars
 ENV DATABASE_URL=$DATABASE_URL
 ENV ENCRYPTION_KEY=$ENCRYPTION_KEY
 ENV NEXTAUTH_SECRET=$NEXTAUTH_SECRET
 ENV NEXTAUTH_URL=$NEXTAUTH_URL
 
 RUN npm install -g pnpm
+
 WORKDIR /app
 COPY . .
 RUN pnpm install
 
 WORKDIR /app/apps/web
+RUN touch .env
 RUN pnpm build
 
 EXPOSE 3000
