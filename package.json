@@ -22,7 +22,7 @@
     "go": "pnpm db:up && turbo run go --concurrency 20",
     "dev": "turbo run dev --parallel",
     "pre-commit": "lint-staged",
-    "start": "turbo run start --parallel",
+    "start": "turbo run start --filter=@formbricks/web",
     "format": "prettier --write \"**/*.{ts,tsx,md}\"",
     "generate": "turbo run generate",
     "lint": "turbo run lint",
