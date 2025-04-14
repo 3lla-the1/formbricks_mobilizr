@@ -30,7 +30,7 @@ import {
   isS3Configured,
 } from "../constants";
 import { generateLocalSignedUrl } from "../crypto";
-import { env } from "../env";
+import { env } from "../env.lazy";
 
 // S3Client Singleton
 let s3ClientInstance: S3Client | null = null;

@@ -2,7 +2,7 @@ import jwt, { JwtPayload } from "jsonwebtoken";
 import { prisma } from "@formbricks/database";
 import { logger } from "@formbricks/logger";
 import { symmetricDecrypt, symmetricEncrypt } from "./crypto";
-import { env } from "./env";
+import { env } from "./env.lazy";
 
 export const createToken = (userId: string, userEmail: string, options = {}): string => {
   if (!env.ENCRYPTION_KEY) {

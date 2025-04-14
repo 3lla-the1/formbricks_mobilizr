@@ -4,7 +4,7 @@
    disable telemetry, set the environment variable TELEMETRY_DISABLED=1 */
 import { logger } from "@formbricks/logger";
 import { IS_PRODUCTION } from "./constants";
-import { env } from "./env";
+import { env } from "./env.lazy";
 
 const crypto = require("crypto");
 
