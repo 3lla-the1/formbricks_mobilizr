@@ -12,12 +12,16 @@ services:
         fromDatabase:
           name: formbricks-db
           property: connectionString
+        build: true
       - key: NEXTAUTH_SECRET
-        sync: false
+        value: 9e96d2f0f4ab9d4cca3623a9997992af8f0c86e7858cdbc2797f7809cfd84470
+        build: true
       - key: NEXTAUTH_URL
-        sync: false
+        value: https://formbricks-mobilizr.onrender.com
+        build: true
       - key: ENCRYPTION_KEY
-        sync: false
+        value: 70752bc3c99afffed475c3258b315c50e67646aebfe3d312af5abebcd8e2860d
+        build: true
 
   postgres:
     type: pserv
